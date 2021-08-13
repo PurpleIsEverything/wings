@@ -46,7 +46,9 @@ type Server struct {
 	resources   ResourceUsage
 	Environment environment.ProcessEnvironment `json:"-"`
 
-	fs *filesystem.Filesystem
+	fs        *filesystem.Filesystem
+	sftpFs    *filesystem.Filesystem
+	installFs *filesystem.Filesystem
 
 	// Events emitted by the server instance.
 	emitter *events.EventBus
@@ -233,6 +235,16 @@ func (s *Server) ProcessConfiguration() *remote.ProcessConfiguration {
 
 // Filesystem returns an instance of the filesystem for this server.
 func (s *Server) Filesystem() *filesystem.Filesystem {
+	return s.fs
+}
+
+// SFTPFilesystem returns an instance of the sftp filesystem for this server.
+func (s *Server) SFTPFilesystem() *filesystem.Filesystem {
+	return s.fs
+}
+
+// InstallFilesystem returns an instance of the install filesystem for this server.
+func (s *Server) InstallFilesystem() *filesystem.Filesystem {
 	return s.fs
 }
 

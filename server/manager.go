@@ -7,8 +7,8 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"path/filepath"
 	"runtime"
+	"strings"
 	"sync"
 	"time"
 
@@ -176,7 +176,9 @@ func (m *Manager) InitServer(data remote.ServerConfigurationResponse) (*Server, 
 		return nil, err
 	}
 
-	s.fs = filesystem.New(filepath.Join(config.Get().System.Data, s.ID()), s.DiskSpace(), s.Config().Egg.FileDenylist)
+	s.fs = filesystem.New(strings.ReplaceAll(config.Get().System.Data, "%uuid%", s.ID()), s.DiskSpace(), s.Config().Egg.FileDenylist)
+	s.sftpFs = filesystem.New(strings.ReplaceAll(config.Get().System.Data, "%uuid%", s.ID()), s.DiskSpace(), s.Config().Egg.FileDenylist)
+	s.installFs = filesystem.New(strings.ReplaceAll(config.Get().System.Data, "%uuid%", s.ID()), s.DiskSpace(), s.Config().Egg.FileDenylist)
 
 	// Right now we only support a Docker based environment, so I'm going to hard code
 	// this logic in. When we're ready to support other environment we'll need to make

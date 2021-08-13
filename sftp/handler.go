@@ -42,7 +42,7 @@ func NewHandler(sc *ssh.ServerConn, srv *server.Server) *Handler {
 	return &Handler{
 		permissions: strings.Split(sc.Permissions.Extensions["permissions"], ","),
 		server:      srv,
-		fs:          srv.Filesystem(),
+		fs:          srv.SFTPFilesystem(),
 		ro:          config.Get().System.Sftp.ReadOnly,
 		logger: log.WithFields(log.Fields{
 			"subsystem": "sftp",

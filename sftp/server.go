@@ -42,7 +42,7 @@ func New(m *server.Manager) *SFTPServer {
 	cfg := config.Get().System
 	return &SFTPServer{
 		manager:  m,
-		BasePath: cfg.Data,
+		BasePath: cfg.SFTPData,
 		ReadOnly: cfg.Sftp.ReadOnly,
 		Listen:   cfg.Sftp.Address + ":" + strconv.Itoa(cfg.Sftp.Port),
 	}

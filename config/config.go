@@ -122,8 +122,14 @@ type SystemConfiguration struct {
 	// Directory where logs for server installations and other wings events are logged.
 	LogDirectory string `default:"/var/log/pterodactyl" yaml:"log_directory"`
 
-	// Directory where the server data is stored at.
-	Data string `default:"/var/lib/pterodactyl/volumes" yaml:"data"`
+	// Data folder format of where the server data is stored at.
+	Data string `default:"/var/lib/pterodactyl/volumes/%uuid%" yaml:"data"`
+
+	// (Advanced) Data folder format of sever data used by SFTP.
+	SFTPData string `default:"/var/lib/pterodactyl/volumes/%uuid%" yaml:"sftp_data"`
+
+	// (Advanced) Data folder format of server data used by install containers.
+	InstallData string `default:"/var/lib/pterodactyl/volumes/%uuid%" yaml:"install_data"`
 
 	// Directory where server archives for transferring will be stored.
 	ArchiveDirectory string `default:"/var/lib/pterodactyl/archives" yaml:"archive_directory"`

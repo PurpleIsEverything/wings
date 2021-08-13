@@ -424,7 +424,7 @@ func (ip *InstallationProcess) Execute() (string, error) {
 		Mounts: []mount.Mount{
 			{
 				Target:   "/mnt/server",
-				Source:   ip.Server.Filesystem().Path(),
+				Source:   ip.Server.InstallFilesystem().Path(),
 				Type:     mount.TypeBind,
 				ReadOnly: false,
 			},
